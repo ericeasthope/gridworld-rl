@@ -200,9 +200,9 @@ if __name__ == '__main__':
         number_of_steps[episode] = steps
 
     '''
-    Below I plot the outcomes of teaching the agent.
+    Below I plot the outcome of teaching the agent.
 
-    1. The first plot relates the agent's cumulative reward to the number of
+    The plot relates the agent's cumulative reward to the number of
     steps that the agent takes during each episode. At first, the agent is seen
     to take many steps with little to no reward.
 
