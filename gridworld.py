@@ -73,10 +73,10 @@ right_prohibited_moves = dict(
 
 gamma = 0.95           # Set a discount factor (fixed within [0,1])
 epsilon = 0.9          # Set the probability that the agent acts randomly
-step_size = 0.8        # Set a step size (greater than zero)
+step_size = 0.85       # Set a step size (fixed within [0,1])
 
 # Set the number of times that we train the agent to reach the goal state
-total_episodes = 3000
+total_episodes = 9000
 
 # Set at which episode the obstacle moves
 episode_when_obstacle_moves = 1000
@@ -90,6 +90,7 @@ def choose_action(environment, state, Q, epsilon):
 
         * The `environment`
         * The agent's current `state`
+        * An action-value function Q(state, action)
         * The probability `epsilon` that the agent acts randomly
 
     The agent defaults to moving upwards unless an `action` is set by the
@@ -109,7 +110,7 @@ def choose_action(environment, state, Q, epsilon):
         action = np.argmax(Q[state, :])
     return action;
 
-def run_episode(environment, step_size, prohibited_moves=None):
+def run_episode(environment, Q, step_size, prohibited_moves=None):
     '''
     Run an episode to move the agent around Gridworld
 
@@ -133,7 +134,8 @@ def run_episode(environment, step_size, prohibited_moves=None):
         action = choose_action(environment, state, Q, epsilon)
 
         # Detect if the chosen action hits an obstacle
-        if not (state, directions[action]) in prohibited_moves.viewitems():
+        if (prohibited_moves is None or
+            not (state, directions[action]) in prohibited_moves.viewitems()):
 
             # Take a step in the environment based on the chosen action
             next_state, reward, done, info = environment.step(action)
@@ -175,7 +177,9 @@ if __name__ == '__main__':
 
     # Run episodes with the first (left) environment map
     for episode in range(episode_when_obstacle_moves):
-        reward, steps = run_episode(left_environment, step_size=step_size, prohibited_moves=prohibited_moves)
+        reward, steps = run_episode(left_environment,
+                                    Q, step_size=step_size,
+                                    prohibited_moves=left_prohibited_moves)
 
         # Store the cumulative reward at this episode
         cumulative_reward[episode] = np.max(cumulative_reward) + reward
@@ -185,7 +189,9 @@ if __name__ == '__main__':
 
     # Run episodes with the second (right) environment map (the obstacle moves)
     for episode in range(episode_when_obstacle_moves, total_episodes):
-        reward, steps = run_episode(right_environment, step_size=step_size, prohibited_moves=right_prohibited_moves)
+        reward, steps = run_episode(right_environment,
+                                    Q, step_size=step_size,
+                                    prohibited_moves=right_prohibited_moves)
 
         # Store the cumulative reward at this episode
         cumulative_reward[episode] = np.max(cumulative_reward) + reward
@@ -211,12 +217,15 @@ if __name__ == '__main__':
     a new optimal policy for reaching for the goal state in fewer steps.
     '''
 
-    plt.plot(
-        [i for i in range(total_episodes)],
-        cumulative_reward/number_of_steps
-    )
+    plt.figure(figsize=(15,10))
     plt.axis([
         0, total_episodes,
-        0, np.max(cumulative_reward/number_of_steps) + np.pi
+        0, np.max(cumulative_reward/number_of_steps) + 1
     ])
+    plt.xlabel("Episodes", fontsize=15)
+    plt.ylabel("Cumulative Reward / Number of Steps", fontsize=15)
+    plt.plot(
+        [i for i in range(total_episodes)],
+        cumulative_reward/number_of_steps,
+    )
     plt.show()
