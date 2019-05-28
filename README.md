@@ -84,3 +84,5 @@ At the 1000th episode, whereupon the agent must adapt to a moved obstacle,
 this trend in the reward-step ratio is temporarily disturbed.
 Nevertheless, the agent continues to receive reward, and eventually learns
 a new optimal policy for reaching for the goal state in fewer steps.
+
+##### end
