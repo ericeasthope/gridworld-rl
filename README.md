@@ -10,7 +10,7 @@ The agent, who begins at the starting state S, cannot pass through the
 shaded squares (an obstacle), and "succeeds" by reaching the goal state G,
 where a reward is given.
 
-After the first 1000 attempts to the navigate the grid, the obstacle moves, so
+After the first 1000 attempts (episodes) to the navigate the grid, the obstacle moves, so
 the agent must navigate a new grid:
 
 <p align="center"><img src="./images/right_environment.png" height="150"></p>
@@ -71,4 +71,16 @@ python2.7 gridworld.py
 
 ### Results
 
-<p align="center"><img src="./images/results.png" height="600"></p>
+<p align="center"><img src="./images/result.png" height="500"></p>
+
+At first, the agent is seen to take many steps with little to no reward.
+
+However, once the agent reaches the goal state G a number of times, the
+ratio of cumulative reward to number of episodes appears to trend linearly. The agent
+is also taking few steps to reach the goal state. Accordingly, the ratio of
+cumulative reward to number of steps tends to increase.
+
+At the 1000th episode, whereupon the agent must adapt to a moved obstacle,
+this trend in the reward-step ratio is temporarily disturbed.
+Nevertheless, the agent continues to receive reward, and eventually learns
+a new optimal policy for reaching for the goal state in fewer steps.
