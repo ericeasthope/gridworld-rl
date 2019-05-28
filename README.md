@@ -4,7 +4,7 @@
 
 Suppose that an agent wishes to navigate Gridworld:
 
-<p align="center"><img src="./left_environment.png" height="150"></p>
+<p align="center"><img src="./images/left_environment.png" height="150"></p>
 
 The agent, who begins at the starting state S, cannot pass through the
 shaded squares (an obstacle), and "succeeds" by reaching the goal state G,
@@ -13,7 +13,7 @@ where a reward is given.
 After the first 1000 attempts to the navigate the grid, the obstacle moves, so
 the agent must navigate a new grid:
 
-<p align="center"><img src="./right_environment.png" height="150"></p>
+<p align="center"><img src="./images/right_environment.png" height="150"></p>
 
 The adaptation of the agent to moving obstacles is a demonstration of
 [Q-learning](https://en.wikipedia.org/wiki/Q-learning). Here I implement
@@ -70,3 +70,5 @@ python2.7 gridworld.py
 ```
 
 ### Results
+
+<p align="center"><img src="./images/results.png" height="600"></p>
