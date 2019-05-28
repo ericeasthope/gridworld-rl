@@ -207,9 +207,9 @@ if __name__ == '__main__':
     to take many steps with little to no reward.
 
     However, once the agent reaches the goal state G a number of times, the
-    ratio of cumulative reward to number of episodes trends linearly. The agent
-    is also taking few steps to reach the goal state. Accordingly, the ratio of
-    cumulative reward to number of steps tends to increase.
+    ratio of cumulative reward to number of episodes appears to trend linearly.
+    The agent is also taking few steps to reach the goal state, so the
+    ratio of cumulative reward to number of steps tends to increase.
 
     At the 1000th episode, whereupon the agent must adapt to a moved obstacle,
     this trend in the reward-step ratio is temporarily disturbed.
