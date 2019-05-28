@@ -69,7 +69,7 @@ Alternatively, to ensure that `gridworld.py` executes with Python 2.7 (and if
 python2.7 gridworld.py
 ```
 
-### Results
+### Result
 
 <p align="center"><img src="./images/result.png" height="500"></p>
 
