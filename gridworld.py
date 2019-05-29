@@ -174,6 +174,8 @@ if __name__ == '__main__':
     # Initialize accounts of reward and steps for every episode
     cumulative_reward = np.zeros(total_episodes)
     number_of_steps = np.zeros(total_episodes)
+    
+    print 'Initialization successful. Teaching agent ...'
 
     # Run episodes with the first (left) environment map
     for episode in range(episode_when_obstacle_moves):
@@ -198,6 +200,8 @@ if __name__ == '__main__':
 
         # Store the number of steps taken during this episode
         number_of_steps[episode] = steps
+        
+    print 'Teaching successful. Plotting result ...'
 
     '''
     Below I plot the outcome of teaching the agent.
@@ -217,7 +221,7 @@ if __name__ == '__main__':
     a new optimal policy for reaching for the goal state in fewer steps.
     '''
 
-    plt.figure(figsize=(15,10))
+    plt.figure(figsize=(8,5))
     plt.axis([
         0, total_episodes,
         0, np.max(cumulative_reward/number_of_steps) + 1
