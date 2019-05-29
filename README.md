@@ -31,7 +31,7 @@ with:
 ```bash
 git clone https://github.com/ericeasthope/gridworld-rl.git
 cd gridworld-rl
-pip install -r requirements.txt
+pip install -r requirements.txt --user
 ```
 
 **Note**: for some users, `pip` may default to installing packages to Python 3.
@@ -39,7 +39,7 @@ Alternatively, to ensure that packages are installed to Python 2.7 (and if
 `python2.7` is recognized as a path), use:
 
 ```bash
-python2.7 -m pip install -r requirements.txt
+python2.7 -m pip install -r requirements.txt --user
 ```
 
 ### Testing
